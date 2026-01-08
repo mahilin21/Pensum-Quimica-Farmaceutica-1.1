@@ -2,127 +2,158 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pensum Química Farmacéutica - UdeA</title>
+<title>Pensum Química Farmacéutica</title>
+
 <style>
-    body {
-        font-family: "Segoe UI", system-ui, sans-serif;
-        background: #f4f8f6;
-        margin: 0;
-        padding: 20px;
-        color: #1f2d2a;
-    }
+:root{
+    --verde-oscuro:#2c6e5a;
+    --verde-medio:#5fb8a0;
+    --verde-claro:#d7f3ea;
+    --verde-bloqueado:#ecf4f1;
+    --verde-coreq:#4fae95;
+}
 
-    h1 {
-        text-align: center;
-        margin-bottom: 10px;
-    }
+body{
+    font-family:"Segoe UI",system-ui,sans-serif;
+    background:#f4fbf8;
+    margin:0;
+    padding:20px;
+    color:#1f3f36;
+}
 
-    .credits-total {
-        text-align: center;
-        margin-bottom: 15px;
-        font-weight: bold;
-    }
+h1{
+    text-align:center;
+    margin-bottom:2px;
+}
 
-    .progress-container {
-        max-width: 900px;
-        margin: 0 auto 25px;
-        background: #dceee8;
-        border-radius: 10px;
-        overflow: hidden;
-        height: 18px;
-    }
+.subtitle{
+    text-align:center;
+    font-size:13px;
+    opacity:.8;
+    margin-bottom:14px;
+}
 
-    .progress-bar {
-        height: 100%;
-        background: #6fb9a6;
-        width: 0%;
-        transition: width 0.3s;
-    }
+#creditsTotal{
+    text-align:center;
+    font-weight:600;
+    margin-bottom:10px;
+}
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(10, minmax(220px, 1fr));
-        gap: 12px;
-        overflow-x: auto;
-    }
+.progress-container{
+    max-width:900px;
+    margin:0 auto 25px;
+    background:#e3f4ee;
+    border-radius:12px;
+    overflow:hidden;
+    height:14px;
+}
 
-    .semester {
-        background: #ffffff;
-        border-radius: 14px;
-        padding: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        min-height: 300px;
-    }
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,#5fb8a0,#8ad6c3);
+    width:0%;
+    transition:.3s;
+}
 
-    .semester h2 {
-        text-align: center;
-        font-size: 15px;
-        margin-bottom: 8px;
-        color: #2f6f62;
-    }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(10,240px);
+    gap:14px;
+    overflow-x:auto;
+    padding-bottom:20px;
+}
 
-    .course {
-        background: #3f7f72;
-        color: white;
-        padding: 8px;
-        border-radius: 10px;
-        margin-bottom: 8px;
-        cursor: pointer;
-        font-size: 13px;
-        position: relative;
-        transition: all 0.2s;
-    }
+.semester{
+    background:white;
+    border-radius:16px;
+    padding:10px;
+    box-shadow:0 5px 10px rgba(0,0,0,.05);
+}
 
-    .course small {
-        display: block;
-        opacity: 0.85;
-        font-size: 11px;
-    }
+.semester h2{
+    text-align:center;
+    font-size:14px;
+    color:var(--verde-oscuro);
+    margin-bottom:10px;
+}
 
-    .course.approved {
-        background: #bfe4d6;
-        color: #2b4c43;
-        text-decoration: line-through;
-    }
+.course{
+    background:var(--verde-medio);
+    color:white;
+    padding:8px 9px;
+    border-radius:12px;
+    margin-bottom:8px;
+    cursor:pointer;
+    font-size:13px;
+    position:relative;
+    transition:.2s;
+}
 
-    .course.locked {
-        background: #cfded9;
-        color: #6b8f86;
-        cursor: not-allowed;
-    }
+.course:hover:not(.locked){
+    transform:scale(1.02);
+}
 
-    .course.coreq {
-        border: 2px dashed #e6f4ef;
-    }
+.course .code{
+    font-size:10px;
+    opacity:.9;
+    font-weight:600;
+}
 
-    .course:hover:not(.locked) {
-        transform: scale(1.02);
-    }
+.course small{
+    display:block;
+    font-size:11px;
+    opacity:.9;
+}
 
-    .tooltip {
-        position: absolute;
-        bottom: 105%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #2f6f62;
-        color: white;
-        padding: 6px 8px;
-        border-radius: 6px;
-        font-size: 11px;
-        white-space: nowrap;
-        display: none;
-        z-index: 10;
-    }
+.course.approved{
+    background:var(--verde-claro);
+    color:#2f6b59;
+    text-decoration:line-through;
+}
 
-    .course.locked:hover .tooltip {
-        display: block;
-    }
+.course.locked{
+    background:var(--verde-bloqueado);
+    color:#7fa59a;
+    cursor:not-allowed;
+}
+
+/* ⚗️ Correquisitos */
+.course.coreq{
+    border:2px dashed var(--verde-coreq);
+}
+
+.course.coreq::after{
+    content:" ⚗️";
+}
+
+.tooltip{
+    position:absolute;
+    bottom:105%;
+    left:50%;
+    transform:translateX(-50%);
+    background:#2f6b59;
+    color:white;
+    font-size:11px;
+    padding:6px 8px;
+    border-radius:6px;
+    display:none;
+    white-space:nowrap;
+    z-index:20;
+}
+
+.course.locked:hover .tooltip{
+    display:block;
+}
 </style>
 </head>
+
 <body>
 
-<h1>Pensum Interactivo – Química Farmacéutica (UdeA)</h1>
-<div class="credits-total" id="creditsTotal">Créditos aprobados: 0</div>
+<h1>Pensum Química Farmacéutica</h1>
+<div class="subtitle">Universidad de Antioquia – Versión 06</div>
+
+<div id="creditsTotal"></div>
+
 <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
 </div>
@@ -131,233 +162,202 @@
 
 <script>
 const TOTAL_CREDITS = 149;
+let approved = JSON.parse(localStorage.getItem("qf-approved")||"[]");
 
+/* ================= SEMESTRES ================= */
 const semesters = [
-/* --- NIVEL 1 --- */
 {
-    name: "Semestre 1",
-    courses: [
-        {id:"4007-600", name:"Matemáticas Básica", cr:4},
-        {id:"4008-600", name:"Química General", cr:4},
-        {id:"4008-601", name:"Lab. Química General", cr:1, coreq:["4008-600"]},
-        {id:"4012-400", name:"Seguridad y Salud en el Trabajo", cr:1},
-        {id:"4010-500", name:"Técnicas de la Comunicación", cr:2},
-        {id:"4012-402", name:"Desarrollo Humano", cr:1},
-        {id:"4012-404", name:"Introducción a la Farmacia", cr:2},
-        {id:"4012-459", name:"Inglés I", cr:2}
-    ]
-},
-
-/* --- NIVEL 2 --- */
+name:"Semestre 1",
+courses:[
+{id:"4007-600",name:"Matemáticas Básica",cr:4},
+{id:"4008-600",name:"Química General",cr:4},
+{id:"4008-601",name:"Lab. Química General",cr:1,coreq:["4008-600"]},
+{id:"4012-400",name:"Seguridad y Salud en el Trabajo",cr:1},
+{id:"4010-500",name:"Técnicas de la Comunicación",cr:2},
+{id:"4012-402",name:"Desarrollo Humano",cr:1},
+{id:"4012-404",name:"Introducción a la Farmacia",cr:2},
+{id:"4012-459",name:"Inglés I",cr:2}
+]},
 {
-    name: "Semestre 2",
-    courses: [
-        {id:"4008-602", name:"Química Orgánica", cr:4, prereq:["4008-600","4008-601"]},
-        {id:"4008-603", name:"Lab. Química Orgánica", cr:1, coreq:["4008-602"]},
-        {id:"4007-602", name:"Bioestadística", cr:2, prereq:["4007-600"]},
-        {id:"4008-604", name:"Química Analítica", cr:4, prereq:["4008-600","4008-601"]},
-        {id:"4008-605", name:"Lab. Química Analítica", cr:1, coreq:["4008-604"]},
-        {id:"4012-401", name:"Seminario de Matemáticas", cr:1, prereq:["4007-600"]},
-        {id:"4012-406", name:"Salud Pública", cr:1, prereq:["4012-400"]},
-        {id:"4012-403", name:"Metodología Investigación Cualitativa", cr:1, coreq:["4007-602"]},
-        {id:"4012-460", name:"Inglés II", cr:2, prereq:["4012-459"]}
-    ]
-},
-
-/* --- NIVEL 3 --- */
+name:"Semestre 2",
+courses:[
+{id:"4008-602",name:"Química Orgánica",cr:4,pr:["4008-600","4008-601"]},
+{id:"4008-603",name:"Lab. Química Orgánica",cr:1,coreq:["4008-602"]},
+{id:"4007-602",name:"Bioestadística",cr:2,pr:["4007-600"]},
+{id:"4008-604",name:"Química Analítica",cr:4,pr:["4008-600","4008-601"]},
+{id:"4008-605",name:"Lab. Química Analítica",cr:1,coreq:["4008-604"]},
+{id:"4012-401",name:"Seminario de Matemáticas",cr:1,pr:["4007-600"]},
+{id:"4012-406",name:"Salud Pública",cr:1,pr:["4012-400"]},
+{id:"4012-403",name:"Metodología Investigación Cualitativa",cr:1,pr:["4007-602"]},
+{id:"4012-460",name:"Inglés II",cr:2,pr:["4012-459"]}
+]},
 {
-    name: "Semestre 3",
-    courses: [
-        {id:"4009-338", name:"Formación Ciudadana", cr:1},
-        {id:"4007-604", name:"Física Básica", cr:3, prereq:["4012-401"]},
-        {id:"4010-600", name:"Biología Celular y Molecular", cr:3, coreq:["4012-412","4012-413"]},
-        {id:"4012-412", name:"Bioquímica", cr:3, prereq:["4008-604","4008-605"]},
-        {id:"4012-413", name:"Lab. Bioquímica", cr:1, coreq:["4012-412"]},
-        {id:"4012-414", name:"Bioética", cr:1, prereq:["4012-404"]},
-        {id:"4012-407", name:"Prácticas Comunidad", cr:1, prereq:["4012-406","4012-403"]},
-        {id:"4012-405", name:"Metodología Investigación Cuantitativa", cr:2, prereq:["4012-403"]},
-        {id:"4012-461", name:"Inglés III", cr:2, prereq:["4012-460"]}
-    ]
-},
-
-/* --- NIVEL 4 --- */
+name:"Semestre 3",
+courses:[
+{id:"4009-338",name:"Formación Ciudadana",cr:1},
+{id:"4007-604",name:"Física Básica",cr:3,pr:["4012-401"]},
+{id:"4010-600",name:"Biología Celular y Molecular",cr:3},
+{id:"4012-412",name:"Bioquímica",cr:3,pr:["4008-604","4008-605"]},
+{id:"4012-413",name:"Lab. Bioquímica",cr:1,coreq:["4012-412"]},
+{id:"4012-414",name:"Bioética",cr:1,pr:["4012-404"]},
+{id:"4012-407",name:"Prácticas Comunidad",cr:1,pr:["4012-406","4012-403"]},
+{id:"4012-405",name:"Metodología Investigación Cuantitativa",cr:2,pr:["4012-403"]},
+{id:"4012-461",name:"Inglés III",cr:2,pr:["4012-460"]}
+]},
 {
-    name: "Semestre 4",
-    courses: [
-        {id:"4012-420", name:"Biotecnología", cr:2},
-        {id:"4012-421", name:"Lab. Biotecnología", cr:2, coreq:["4012-420"]},
-        {id:"4012-416", name:"Fisioanatomía", cr:3, prereq:["4012-412"]},
-        {id:"4012-417", name:"Lab. Fisioanatomía", cr:1, coreq:["4012-416"]},
-        {id:"4008-606", name:"Fisicoquímica", cr:3, prereq:["4007-604","4008-602"]},
-        {id:"4008-607", name:"Lab. Fisicoquímica", cr:1, coreq:["4008-606"]},
-        {id:"4010-602", name:"Microbiología", cr:2, prereq:["4010-600"]},
-        {id:"4010-603", name:"Lab. Microbiología", cr:1, coreq:["4010-602"]},
-        {id:"4012-462", name:"Inglés IV", cr:2, prereq:["4012-461"]}
-    ]
-},
-
-/* --- NIVEL 5 --- */
+name:"Semestre 4",
+courses:[
+{id:"4012-420",name:"Biotecnología",cr:2},
+{id:"4012-421",name:"Lab. Biotecnología",cr:2,coreq:["4012-420"]},
+{id:"4012-416",name:"Fisioanatomía",cr:3,pr:["4012-412"]},
+{id:"4012-417",name:"Lab. Fisioanatomía",cr:1,coreq:["4012-416"]},
+{id:"4008-606",name:"Fisicoquímica",cr:3,pr:["4007-604","4008-602"]},
+{id:"4008-607",name:"Lab. Fisicoquímica",cr:1,coreq:["4008-606"]},
+{id:"4010-602",name:"Microbiología",cr:2,pr:["4010-600"]},
+{id:"4010-603",name:"Lab. Microbiología",cr:1,coreq:["4010-602"]},
+{id:"4012-462",name:"Inglés IV",cr:2,pr:["4012-461"]}
+]},
 {
-    name: "Semestre 5",
-    courses: [
-        {id:"4008-608", name:"Análisis Instrumental", cr:3, prereq:["4008-606","4008-607"]},
-        {id:"4008-609", name:"Lab. Análisis Instrumental", cr:1, coreq:["4008-608"]},
-        {id:"4012-418", name:"Farmacognosia", cr:3, prereq:["4008-602","4008-603"]},
-        {id:"4012-419", name:"Lab. Farmacognosia", cr:1, coreq:["4012-418"]},
-        {id:"4012-440", name:"Biofarmacia y Farmacocinética", cr:2, prereq:["4012-416","4008-606"]},
-        {id:"4012-422", name:"Operaciones Unitarias", cr:2, prereq:["4008-606"]},
-        {id:"4012-409", name:"Prácticas Servicios Farmacéuticos", cr:1, prereq:["4012-407"]},
-        {id:"4012-410", name:"Legislación Farmacéutica", cr:1, prereq:["4012-420"]},
-        {id:"4012-429", name:"Diseño de Experimentos", cr:1, prereq:["4012-405"]},
-        {id:"4012-463", name:"Inglés V", cr:2, prereq:["4012-462"]}
-    ]
-},
-
-/* --- NIVEL 6 --- */
+name:"Semestre 5",
+courses:[
+{id:"4008-608",name:"Análisis Instrumental",cr:3,pr:["4008-606","4008-607"]},
+{id:"4008-609",name:"Lab. Análisis Instrumental",cr:1,coreq:["4008-608"]},
+{id:"4012-418",name:"Farmacognosia",cr:3,pr:["4008-602","4008-603"]},
+{id:"4012-419",name:"Lab. Farmacognosia",cr:1,coreq:["4012-418"]},
+{id:"4012-440",name:"Biofarmacia y Farmacocinética",cr:2,pr:["4012-416","4008-606"]},
+{id:"4012-422",name:"Operaciones Unitarias",cr:2,pr:["4008-606"]},
+{id:"4012-409",name:"Prácticas Servicios Farmacéuticos",cr:1,pr:["4012-407"]},
+{id:"4012-410",name:"Legislación Farmacéutica",cr:1,pr:["4012-420"]},
+{id:"4012-429",name:"Diseño de Experimentos",cr:1,pr:["4012-405"]},
+{id:"4012-463",name:"Inglés V",cr:2,pr:["4012-462"]}
+]},
 {
-    name: "Semestre 6",
-    courses: [
-        {id:"4012-442", name:"Fitoquímica", cr:2, prereq:["4012-418"]},
-        {id:"4012-443", name:"Lab. Fitoquímica", cr:2, coreq:["4012-442"]},
-        {id:"4012-426", name:"Tecnología Farmacéutica I", cr:3, prereq:["4012-422"]},
-        {id:"4012-427", name:"Lab. Tec. Farmacéutica I", cr:2, coreq:["4012-426"]},
-        {id:"4012-428", name:"Electiva Socio-Humanística", cr:1, prereq:["4012-410"]},
-        {id:"4012-430", name:"Análisis y Control I", cr:3, prereq:["4008-608","4008-609"], coreq:["4012-426","4012-427"]},
-        {id:"4012-431", name:"Lab. Análisis y Control I", cr:2, coreq:["4012-430"]},
-        {id:"4012-411", name:"Prácticas Sector Productivo", cr:2, prereq:["4012-409"]}
-    ]
-},
-
-/* --- NIVEL 7 --- */
+name:"Semestre 6",
+courses:[
+{id:"4012-442",name:"Fitoquímica",cr:2,pr:["4012-418"]},
+{id:"4012-443",name:"Lab. Fitoquímica",cr:2,coreq:["4012-442"]},
+{id:"4012-426",name:"Tecnología Farmacéutica I",cr:3,pr:["4012-422"]},
+{id:"4012-427",name:"Lab. Tecnología Farmacéutica I",cr:2,coreq:["4012-426"]},
+{id:"4012-428",name:"Electiva Socio-Humanística",cr:1,pr:["4012-410"]},
+{id:"4012-430",name:"Análisis y Control I",cr:3,pr:["4008-608","4008-609"],coreq:["4012-426","4012-427"]},
+{id:"4012-431",name:"Lab. Análisis y Control I",cr:2,coreq:["4012-430"]},
+{id:"4012-411",name:"Prácticas Sector Productivo",cr:2,pr:["4012-409"]}
+]},
 {
-    name: "Semestre 7",
-    courses: [
-        {id:"4012-432", name:"Tecnología Farmacéutica II", cr:3, prereq:["4012-426","4012-427"]},
-        {id:"4012-433", name:"Lab. Tec. Farmacéutica II", cr:2, coreq:["4012-432"]},
-        {id:"4012-448", name:"Administración Farmacéutica", cr:2, prereq:["4012-410"]},
-        {id:"4012-436", name:"Análisis y Control II", cr:2, prereq:["4012-430","4012-431"], coreq:["4012-432","4012-433"]},
-        {id:"4012-437", name:"Lab. Análisis y Control II", cr:1, coreq:["4012-436"]},
-        {id:"4012-439", name:"Prácticas Proyecto", cr:2, prereq:["4012-411"]},
-        {id:"4012-444", name:"Cosméticos", cr:2, coreq:["4012-432"]},
-        {id:"4012-445", name:"Lab. Cosméticos", cr:1, coreq:["4012-444","4012-433"]}
-    ]
-},
-
-/* --- NIVEL 8 --- */
+name:"Semestre 7",
+courses:[
+{id:"4012-432",name:"Tecnología Farmacéutica II",cr:3,pr:["4012-426","4012-427"]},
+{id:"4012-433",name:"Lab. Tecnología Farmacéutica II",cr:2,coreq:["4012-432"]},
+{id:"4012-448",name:"Administración Farmacéutica",cr:2,pr:["4012-410"]},
+{id:"4012-436",name:"Análisis y Control II",cr:2,pr:["4012-430","4012-431"],coreq:["4012-432","4012-433"]},
+{id:"4012-437",name:"Lab. Análisis y Control II",cr:1,coreq:["4012-436"]},
+{id:"4012-439",name:"Prácticas Proyecto",cr:2,pr:["4012-411"]},
+{id:"4012-444",name:"Cosméticos",cr:2,coreq:["4012-432"]},
+{id:"4012-445",name:"Lab. Cosméticos",cr:1,coreq:["4012-444","4012-433"]}
+]},
 {
-    name: "Semestre 8",
-    courses: [
-        {id:"4012-434", name:"Toxicología", cr:2, prereq:["4012-436","4012-437"]},
-        {id:"4012-435", name:"Lab. Toxicología", cr:1, coreq:["4012-434"]},
-        {id:"4012-415", name:"Seminario Farmacología", cr:1},
-        {id:"4012-424", name:"Nutrición y Bromatología", cr:2, prereq:["4012-432","4012-440"]},
-        {id:"4012-425", name:"Lab. Nutrición y Bromatología", cr:1, coreq:["4012-424"]},
-        {id:"4012-408", name:"Farmacología", cr:4, prereq:["4012-440","4012-442"]},
-        {id:"4012-446", name:"Farmacia Hospitalaria", cr:2, prereq:["4012-409","4012-436"]},
-        {id:"4012-441", name:"Prácticas Proyecto I", cr:2, prereq:["4012-439"]}
-    ]
-},
-
-/* --- NIVEL 9 --- */
+name:"Semestre 8",
+courses:[
+{id:"4012-434",name:"Toxicología",cr:2,pr:["4012-436","4012-437"]},
+{id:"4012-435",name:"Lab. Toxicología",cr:1,coreq:["4012-434"]},
+{id:"4012-424",name:"Nutrición y Bromatología",cr:2,pr:["4012-432","4012-440"]},
+{id:"4012-425",name:"Lab. Nutrición y Bromatología",cr:1,coreq:["4012-424"]},
+{id:"4012-408",name:"Farmacología",cr:4,pr:["4012-440","4012-442"]},
+{id:"4012-446",name:"Farmacia Hospitalaria",cr:2,pr:["4012-409","4012-436"]},
+{id:"4012-441",name:"Prácticas Proyecto I",cr:2,pr:["4012-439"]}
+]},
 {
-    name: "Semestre 9",
-    courses: [
-        {id:"4012-438", name:"Electiva Administrativa", cr:1, prereq:["4012-432","4012-448"]},
-        {id:"4012-450", name:"Farmacia Clínica", cr:4, prereq:["4012-408","4012-446"]},
-        {id:"4012-451", name:"Prácticas Farmacia Clínica", cr:3, coreq:["4012-450"]},
-        {id:"4012-452", name:"Química Farmacéutica", cr:2, prereq:["4012-436","4012-408"]},
-        {id:"4012-453", name:"Lab. Química Farmacéutica", cr:1, coreq:["4012-452"]},
-        {id:"4012-454", name:"Farmacia Magistral", cr:2, prereq:["4012-432","4012-433"]},
-        {id:"4012-455", name:"Lab. Farmacia Magistral", cr:1, coreq:["4012-454"]},
-        {id:"4012-457", name:"Prácticas Proyecto II", cr:2, prereq:["4012-441"]},
-        {id:"4012-456", name:"Aseguramiento de la Calidad", cr:1, prereq:["4012-432"]}
-    ]
-},
-
-/* --- NIVEL 10 --- */
+name:"Semestre 9",
+courses:[
+{id:"4012-438",name:"Electiva Administrativa",cr:1,pr:["4012-432","4012-448"]},
+{id:"4012-450",name:"Farmacia Clínica",cr:4,pr:["4012-408","4012-446"]},
+{id:"4012-451",name:"Prácticas Farmacia Clínica",cr:3,coreq:["4012-450"]},
+{id:"4012-452",name:"Química Farmacéutica",cr:2,pr:["4012-436","4012-408"]},
+{id:"4012-453",name:"Lab. Química Farmacéutica",cr:1,coreq:["4012-452"]},
+{id:"4012-454",name:"Farmacia Magistral",cr:2,pr:["4012-432","4012-433"]},
+{id:"4012-455",name:"Lab. Farmacia Magistral",cr:1,coreq:["4012-454"]},
+{id:"4012-457",name:"Prácticas Proyecto II",cr:2,pr:["4012-441"]},
+{id:"4012-456",name:"Aseguramiento de la Calidad",cr:1,pr:["4012-432"]}
+]},
 {
-    name: "Semestre 10",
-    courses: [
-        {id:"4012-459F", name:"Práctica Académica Final", cr:16}
-    ]
-}
+name:"Semestre 10",
+courses:[
+{id:"4012-459F",name:"Práctica Académica Final",cr:16,creditReq:149}
+]}
 ];
 
-const grid = document.getElementById("grid");
-let approved = JSON.parse(localStorage.getItem("approvedCourses") || "[]");
+const grid=document.getElementById("grid");
 
-function isApproved(id) {
-    return approved.includes(id);
+function isApproved(id){return approved.includes(id);}
+
+function currentCredits(){
+    let sum=0;
+    semesters.forEach(s=>s.courses.forEach(c=>{
+        if(isApproved(c.id)) sum+=c.cr;
+    }));
+    return sum;
 }
 
-function canUnlock(course) {
-    if (course.prereq) {
-        return course.prereq.every(p => isApproved(p));
-    }
-    if (course.coreq) {
-        return course.coreq.some(c => isApproved(c));
-    }
+function canUnlock(c){
+    if(c.creditReq && currentCredits()<c.creditReq) return false;
+    if(c.pr && !c.pr.every(p=>isApproved(p))) return false;
+    if(c.coreq && !c.coreq.some(q=>isApproved(q))) return false;
     return true;
 }
 
-function updateProgress() {
-    let credits = 0;
-    semesters.forEach(s =>
-        s.courses.forEach(c => {
-            if (isApproved(c.id)) credits += c.cr;
-        })
-    );
-    document.getElementById("creditsTotal").textContent =
-        `Créditos aprobados: ${credits}`;
-    document.getElementById("progressBar").style.width =
-        Math.min(credits / TOTAL_CREDITS * 100, 100) + "%";
-}
+function render(){
+    grid.innerHTML="";
+    let credits=currentCredits();
 
-function render() {
-    grid.innerHTML = "";
-    semesters.forEach(sem => {
-        const col = document.createElement("div");
-        col.className = "semester";
-        col.innerHTML = `<h2>${sem.name}</h2>`;
-        sem.courses.forEach(c => {
-            const div = document.createElement("div");
-            const unlocked = canUnlock(c);
-            div.className = "course";
-            if (c.coreq) div.classList.add("coreq");
-            if (!unlocked && !isApproved(c.id)) div.classList.add("locked");
-            if (isApproved(c.id)) div.classList.add("approved");
+    semesters.forEach(s=>{
+        const col=document.createElement("div");
+        col.className="semester";
+        col.innerHTML=`<h2>${s.name}</h2>`;
 
-            div.innerHTML = `
+        s.courses.forEach(c=>{
+            const d=document.createElement("div");
+            const unlocked=canUnlock(c);
+
+            d.className="course";
+            if(c.coreq) d.classList.add("coreq");
+            if(!unlocked && !isApproved(c.id)) d.classList.add("locked");
+            if(isApproved(c.id)) d.classList.add("approved");
+
+            let tip=[];
+            if(c.pr) tip.push("PR: "+c.pr.join(", "));
+            if(c.coreq) tip.push("CO: "+c.coreq.join(", "));
+            if(c.creditReq)
+                tip.push(`CR: ${c.creditReq} (faltan ${Math.max(0,c.creditReq-credits)})`);
+
+            d.innerHTML=`
+                <div class="code">${c.id}</div>
                 ${c.name}
                 <small>${c.cr} créditos</small>
-                <div class="tooltip">
-                    ${c.prereq ? "Requiere: " + c.prereq.join(", ") : ""}
-                    ${c.coreq ? " | Correquisito: " + c.coreq.join(", ") : ""}
-                </div>
+                <div class="tooltip">${tip.join(" | ")}</div>
             `;
 
-            div.onclick = () => {
-                if (!unlocked && !isApproved(c.id)) return;
-                if (isApproved(c.id)) {
-                    approved = approved.filter(x => x !== c.id);
-                } else {
-                    approved.push(c.id);
-                }
-                localStorage.setItem("approvedCourses", JSON.stringify(approved));
+            d.onclick=()=>{
+                if(!unlocked && !isApproved(c.id)) return;
+                approved=isApproved(c.id)
+                    ?approved.filter(x=>x!==c.id)
+                    :[...approved,c.id];
+                localStorage.setItem("qf-approved",JSON.stringify(approved));
                 render();
             };
 
-            col.appendChild(div);
+            col.appendChild(d);
         });
         grid.appendChild(col);
     });
-    updateProgress();
+
+    document.getElementById("creditsTotal").textContent=
+        `Créditos aprobados: ${credits} / ${TOTAL_CREDITS}`;
+
+    document.getElementById("progressBar").style.width=
+        Math.min(credits/TOTAL_CREDITS*100,100)+"%";
 }
 
 render();
 </script>
-
 </body>
 </html>
-
-
